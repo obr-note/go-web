@@ -46,7 +46,15 @@ func index(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
 }
 
 func hello(w http.ResponseWriter, rq *http.Request, tmp *template.Template) {
-  er := tmp.Execute(w, nil)
+  item := struct{
+    Title string
+    Message string
+  }{
+    Title: "Send values",
+    Message: "This is Sample message.<br>これはサンプルです。",
+  }
+
+  er := tmp.Execute(w, item)
   if er != nil {
     log.Fatal(er)
   }
