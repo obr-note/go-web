@@ -6,9 +6,11 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/go-delve/delve v1.7.0 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
+	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
+	github.com/mattn/go-sqlite3 v1.14.8 // indirect
 	github.com/peterh/liner v1.2.1 // indirect
 	github.com/russross/blackfriday v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
