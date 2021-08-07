@@ -33,27 +33,17 @@
 
       <p>{{.Message}}</p>
       <h4 class="mt-4">Post list.</h4>
-      {{range $n,$Itm := .Plist}}
-        <div class="media border m-1 p-2">
-          <a href="/post?pid={{$Itm.Model.ID}}">
-            <img class="mr-3" src="https://img.youtube.com/vi/{{$Itm.Address}}/default.jpg" alt="Generic placeholder image">
-          </a>
-          <div class="media-body">
-            <h5 class="mt-0">{{$Itm.Address}}</h5>
-            {{$Itm.Message}}
-          </div>
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="Account">Account(mail address)</label>
+          <input type="mail" class="form-control" id="account" name="account">
         </div>
-      {{end}}
-
-      <h4 class="mt-4">Group list.</h4>
-      {{range $n,$Itm := .Glist}}
-        <div class="media border m-1 p-2">
-          <a href="/group?gid={{$Itm.ID}}">
-            <h5 class="mt-0">{{$Itm.Name}}</h5>
-          </a>
-          {{$Itm.Message}}
+        <div class="form-group">
+          <label for="pass">Password</label>
+          <input type="password" class="form-control" id="pass" name="pass">
         </div>
-      {{end}}
+        <button type="submit" class="btn btn-primary">Click</button>
+      </form>
 
       <p class="mt-5 mb-1 text-center">no copyright.</p>
     </div>

@@ -1,0 +1,88 @@
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+  <script>
+    function logout() {
+      if (window.confirm("ログアウトしますか？")) {
+        window.location = "/logout";
+      }
+    }
+  </script>
+</head>
+<body class="bg-light">
+  <div class="container bg-white p-0">
+    <nav class="navbar-expand-sm navbar navbar-dark p-1 bg-primary justify-content-between">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Top</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+      </ul>
+      <a href="#" onclick="javascript:logout();">
+        <span class="navbar-text text-light">
+          {{.Account}}
+        </span>
+      </a>
+    </nav>
+    <div class="p-3">
+      <h1 class="display-4 mb-4 text-primary">{{.Title}}</h1>
+
+      <p>{{.Message}}</p>
+      <h4 class="mt-4">Post.</h4>
+      <form method="post" action="/home">
+        <input type="hidden" name="form" value="post">
+        <div class="form-group mt-4">
+          <label for="address" class="h6">Youtube share address:</label>
+          <input type="text" class="form-control" id="address" name="address" placeholder="https://youtu.be/xxxxx">
+        </div>
+        <div class="form-group mt-4">
+          <label for="message" class="h6">Message:</label>
+          <input type="text" class="form-control" id="message" name="message">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Post group.</button>
+      </form>
+
+      <h5 class="mt-3">Post list.</h5>
+      {{range $n,$Itm := .Plist}}
+        <a href="/post?pid={{$Itm.Model.ID}}">
+          <img class="mr-3" src="https://img.youtube.com/vi/{{$Itm.Address}}/default.jpg" alt="Generic placeholder image">
+        </a>
+        <div class="media-body">
+          <h5 class="mt-0">{{$Itm.Address}}</h5>
+          {{$Itm.Message}}
+        </div>
+      {{end}}
+
+      <h4 class="mt-5">Group list.</h4>
+      <form method="post" action="/home">
+        <input type="hidden" name="form" value="post">
+        <div class="form-group mt-4">
+          <label for="name2" class="h6">New Group:</label>
+          <input type="text" class="form-control" id="name2" name="name">
+        </div>
+        <div class="form-group mt-4">
+          <label for="message" class="h6">Message:</label>
+          <input type="text" class="form-control" id="message" name="message">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Post group.</button>
+      </form>
+
+      <h5 class="mt-3">Group list.</h5>
+      {{range $n,$Itm := .Glist}}
+        <div class="media border m-1 p-2">
+          <div class="media-body">
+            <a href="/group?gid={{$Itm.ID}}"><h5 class="mt-0">{{$Itm.Name}}</h5></a>
+            {{$Itm.Message}}
+          </div>
+        </div>
+      {{end}}
+
+      <p class="mt-5 mb-1 text-center">no copyright.</p>
+    </div>
+  </div>
+</body>
+</html>

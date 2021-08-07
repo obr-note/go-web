@@ -32,26 +32,28 @@
       <h1 class="display-4 mb-4 text-primary">{{.Title}}</h1>
 
       <p>{{.Message}}</p>
-      <h4 class="mt-4">Post list.</h4>
-      {{range $n,$Itm := .Plist}}
-        <div class="media border m-1 p-2">
-          <a href="/post?pid={{$Itm.Model.ID}}">
-            <img class="mr-3" src="https://img.youtube.com/vi/{{$Itm.Address}}/default.jpg" alt="Generic placeholder image">
-          </a>
-          <div class="media-body">
-            <h5 class="mt-0">{{$Itm.Address}}</h5>
-            {{$Itm.Message}}
-          </div>
+      <h4 class="mt-4">Post movie.</h4>
+      <div class="card m-1 p-2 text-center">
+        <div>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/{{.Post.Address}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>"
         </div>
-      {{end}}
+        <div class="card-body">
+          <h5 class="mt-0">{{.Post.Message}}</h5>
+        </div>
+      </div>
 
-      <h4 class="mt-4">Group list.</h4>
-      {{range $n,$Itm := .Glist}}
+      <form method="post" action="/post?pid={{.Post.ID}}">
+        <div class="form-group mt-4">
+          <label for="message" class="h6">New Comment:</label>
+          <textarea class="form-control" id="message" name="message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Post comment.</button>
+      </form>
+
+      <h4 class="mt-4">Comments.</h4>
+      {{range $n,$Itm := .Clist}}
         <div class="media border m-1 p-2">
-          <a href="/group?gid={{$Itm.ID}}">
-            <h5 class="mt-0">{{$Itm.Name}}</h5>
-          </a>
-          {{$Itm.Message}}
+          <h6 class="mt-0">{{$Itm.Comment.Message}} ({{$Itm.Name}})</h6>
         </div>
       {{end}}
 

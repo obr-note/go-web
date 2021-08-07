@@ -32,7 +32,13 @@
       <h1 class="display-4 mb-4 text-primary">{{.Title}}</h1>
 
       <p>{{.Message}}</p>
-      <h4 class="mt-4">Post list.</h4>
+      <h4 class="mt-4">"{{.Group.Name}}" group.</h4>
+      <form method="post" action="/group?gid={{.Group.Model.ID}}">
+        <div class="form-group mt-4">
+          <label for="address" class="h6">Youtube share address:</label>
+        </div>
+      </form>
+
       {{range $n,$Itm := .Plist}}
         <div class="media border m-1 p-2">
           <a href="/post?pid={{$Itm.Model.ID}}">
@@ -42,16 +48,6 @@
             <h5 class="mt-0">{{$Itm.Address}}</h5>
             {{$Itm.Message}}
           </div>
-        </div>
-      {{end}}
-
-      <h4 class="mt-4">Group list.</h4>
-      {{range $n,$Itm := .Glist}}
-        <div class="media border m-1 p-2">
-          <a href="/group?gid={{$Itm.ID}}">
-            <h5 class="mt-0">{{$Itm.Name}}</h5>
-          </a>
-          {{$Itm.Message}}
         </div>
       {{end}}
 
